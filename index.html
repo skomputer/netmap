@@ -1,0 +1,58 @@
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="d3.v3.min"></script>
+<script src="netmap.js"></script>
+<style>
+svg {
+  border: 1px solid #ddd;
+}
+
+svg .line {
+  stroke: #ddd;
+}
+
+svg text {
+  fill: black;
+}
+
+svg .entity text {
+  font: 12px sans-serif;
+}
+
+svg .rel text {
+  font: 9px sans-serif;
+  fill: #888;
+}
+
+svg image {
+  fill: white;
+}
+
+svg .image {
+  fill: white;
+  background-color: white;
+}
+</style>
+</head>
+<body>
+
+<h2>Netmap Demo</h2>
+
+<div id="netmap"></div>
+
+<script>
+var data = {"entities":[{"id":"28677","name":"White House","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/profile\/bb4d81fa6108f737e152f1d965cad1ebb06b3e6d_1229704669.png","url":"\/littlesis\/frontend_dev.php\/org\/28677\/White_House\/map","description":"Includes multiple levels of presidential advisory boards and advisors"},{"id":"168","name":"Halliburton","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/profile\/d1364f0029ae23dde05fe2a4ef464002bc7253c1_1227028771.png","url":"\/littlesis\/frontend_dev.php\/org\/168\/Halliburton\/map","description":null},{"id":"45897","name":"National Energy Policy Development Group","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/system\/anons.png","url":"\/littlesis\/frontend_dev.php\/org\/45897\/National_Energy_Policy_Development_Group\/map","description":"President Bush's National Energy Task Force"},{"id":"34497","name":"University of Wyoming","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/system\/anons.png","url":"\/littlesis\/frontend_dev.php\/org\/34497\/University_of_Wyoming\/map","description":null},{"id":"41760","name":"David J Gribbin III","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/system\/anon.png","url":"\/littlesis\/frontend_dev.php\/person\/41760\/David_J_Gribbin_III\/map","description":"Former Vice President\/Government Relations for Halliburton Industries & Former Asst Secretary of Defense for Secretary of Defense Dick Cheney"},{"id":"33271","name":"Council on Foreign Relations","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/profile\/e6831485a09b0206e1379e60f6541aeef19b8e71_1228682507.png","url":"\/littlesis\/frontend_dev.php\/org\/33271\/Council_on_Foreign_Relations\/map","description":"The most prestigious US foreign policy think tank"},{"id":"12901","name":"Republican Party","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/profile\/732bead7b7c20f1d9ab1e61f15eba6226a2054f9_1233188153.png","url":"\/littlesis\/frontend_dev.php\/org\/12901\/Republican_Party\/map","description":null},{"id":"14952","name":"Yale University","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/profile\/91aee18cbf38047a3ee4c87e6da6c8a7b3f704ec_1228784947.png","url":"\/littlesis\/frontend_dev.php\/org\/14952\/Yale_University\/map","description":null},{"id":"34485","name":"University of Wisconsin-Madison","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/system\/anons.png","url":"\/littlesis\/frontend_dev.php\/org\/34485\/University_of_Wisconsin-Madison\/map","description":null},{"id":"33735","name":"Office of Economic Opportunity","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/system\/anons.png","url":"\/littlesis\/frontend_dev.php\/org\/33735\/Office_of_Economic_Opportunity\/map","description":"Responsible for administering War on Poverty programs until 1973"},{"id":14305,"name":"Dick Cheney","image":"http:\/\/s3.amazonaws.com\/littlesis\/images\/profile\/d8da6877752fb3de7534a3414ca734db8d4da5d0_1228676395.png","url":"\/littlesis\/frontend_dev.php\/person\/14305\/Dick_Cheney\/map","description":"Vice President under George W Bush; neoconservative leader; former Secretary of Defense and corporate executive"}],"rels":[{"source":10,"target":0,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92676"},{"source":10,"target":1,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92682"},{"source":10,"target":2,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/194123"},{"source":10,"target":3,"value":1,"label":"Education","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92644"},{"source":10,"target":4,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/133191"},{"source":10,"target":5,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/325777"},{"source":10,"target":6,"value":1,"label":"Membership","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/25416"},{"source":10,"target":7,"value":1,"label":"Education","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92643"},{"source":10,"target":8,"value":1,"label":"Education","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92647"},{"source":10,"target":9,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92649"},{"source":0,"target":1,"value":1,"label":"Lobbying","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/45259"},{"source":0,"target":10,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92648"},{"source":1,"target":10,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92681"},{"source":1,"target":0,"value":1,"label":"Lobbying","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/45259"},{"source":1,"target":4,"value":1,"label":"Position, Transaction","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/45238"},{"source":2,"target":10,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/194123"},{"source":3,"target":10,"value":1,"label":"Education","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92644"},{"source":4,"target":1,"value":1,"label":"Position, Transaction","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/45238"},{"source":4,"target":10,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/133190"},{"source":5,"target":10,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/325776"},{"source":6,"target":10,"value":1,"label":"Membership","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/25416"},{"source":7,"target":10,"value":1,"label":"Education","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92643"},{"source":8,"target":10,"value":1,"label":"Education","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92647"},{"source":9,"target":10,"value":1,"label":"Position","url":"\/littlesis\/frontend_dev.php\/relationship\/view\/id\/92649"}]};
+var center_entity_id = 14305;
+
+var netmap = new Netmap(900, 700, "#netmap");
+netmap.set_data(data, center_entity_id);
+netmap.build();
+netmap.wheel();
+
+//netmap.n_force_ticks(0);
+//netmap.one_time_force();
+</script>
+
+</body>
+</html>
